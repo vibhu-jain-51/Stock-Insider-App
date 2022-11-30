@@ -41,14 +41,14 @@ const Quotes = () => {
     if (value === 1) {
       let arr = [...tempVal];
       let x = arr.sort(function (a, b) {
-        return new Date(b.valid_till) - new Date(a.valid_till);
+        return new Date(b.time) - new Date(a.time);
       });
 
       setQuotes(x);
     } else {
       let arr = [...tempVal];
       let temp = arr.sort(function (a, b) {
-        return new Date(a.valid_till) - new Date(b.valid_till);
+        return new Date(a.time) - new Date(b.time);
       });
 
       setQuotes(temp);
