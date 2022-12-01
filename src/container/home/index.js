@@ -38,6 +38,18 @@ const Home = () => {
     genericHandleSearching(e.target.value);
   };
 
+  function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  }
+
+  const handleChangeInput = debounce((e) => onSearch(e));
+
   const genericHandleSearching = (value) => {
     if (value === "") {
       setDupTableValues(tableValues);
@@ -98,7 +110,8 @@ const Home = () => {
             type="text"
             placeholder="Search for name or symbol"
             prefix={<SearchOutlined />}
-            onChange={onSearch}
+            // onChange={onSearch}
+            onKeyUp={handleChangeInput}
           />
         </Header>
         <Content className="primary-content-container">
